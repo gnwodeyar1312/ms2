@@ -1,6 +1,6 @@
-import { cloudinaryUpload } from "../service/fileService.js";
+const { cloudinaryUpload } = require("../service/fileService.js");
 
-export const fileController = async (req, res) => {
+const fileController = async (req, res) => {
   try {
     if (!req.files) {
       return res
@@ -23,3 +23,5 @@ export const fileController = async (req, res) => {
   }
   res.status(200).json({ message: "File Uploaded successfully" });
 };
+
+module.exports = fileController;

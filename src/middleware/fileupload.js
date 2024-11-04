@@ -1,7 +1,7 @@
-import  path  from "path";
-import multer from "multer";
-import { fileTypeValidator } from "../utils/fileTypeValidator.js";
-import { UNEXPECTED_FILE_TYPE } from "../constants/file.js"
+const path = require("path");
+const multer = require("multer");
+const { fileTypeValidator } = require("../utils/fileTypeValidator.js");
+const { UNEXPECTED_FILE_TYPE } = require("../constants/file.js");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -19,12 +19,14 @@ const upload = multer({
     if (isFileTypeAllowed) {
       return cb(null, true);
     } else {
-      cb(new multer.MulterError(
-        UNEXPECTED_FILE_TYPE.code,
-        UNEXPECTED_FILE_TYPE.message
-      ));
+      cb(
+        new multer.MulterError(
+          UNEXPECTED_FILE_TYPE.code,
+          UNEXPECTED_FILE_TYPE.message
+        )
+      );
     }
   },
-}).array('file', 1);
+}).array("file", 1);
 
-export default upload;
+module.exports =  upload;
